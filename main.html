@@ -1,0 +1,199 @@
+<!--
+    -----------------------------------
+    -----------------------------------
+    Functions/Tags : 
+    -----------------------------------
+    -----------------------------------
+
+    - Heading : <h1> </h1>, ..., ..., <h6> </h6>
+    - Paragraph : <p> </p>
+    - Next line : <br> , <br/> (self closing tag)
+    - Draw horizontal role : <hr>, <hr/> (self closing tag)
+    - List : ul, ol, li (<ul> </ul>, <ol> </ol>, <li> </li>) : ul (unorder list), ol (order list), li (list)
+    - Link : <a href = "https://www.google.com">Google</a>
+    - Image : <img src = "image_link">, <img src = "image_link" alt = "Picture" />
+    - File path :  .  => current path,  .. => 1st back path
+-->
+
+
+<!-- 
+    -----------------------------------
+    -----------------------------------
+    Heading :
+    -----------------------------------
+    -----------------------------------
+-->
+
+<!--
+    - Not more than one <h1> tag
+    - Don't skip tag, mainatain sequence 
+        Don't : <h1>, <h3> 
+        Do : <h1>, <h2>, <h3>, ..., ..., <h6>
+-->
+
+<h1>Book</h1>
+    <h2>Chapter 1</h2>
+        <h3>Section 1</h3>
+        <h3>Section 2</h3>
+    <h2>Chapter 2</h2>
+        <h3>Section 1</h3>
+            <h4>Diagram 1</h4>
+    <h2>Chapter 3</h2>
+        <h3>Section 1</h3>
+        <h3>Section 2</h3>
+
+<!--
+    -----------------------------------
+    -----------------------------------
+    Paragraph :
+    -----------------------------------
+    -----------------------------------
+-->
+
+<p>This is a Paragraph</p>
+<p>This is a Paragraph</p>
+
+<!--
+    -----------------------------------
+    -----------------------------------
+    Self closing tag : 
+    -----------------------------------
+    -----------------------------------
+-->
+
+<!--
+    <br>    This is break tag, used to go next line
+    <br/>   This is break tag, used to go next line
+    <hr>    This is horizontal role element, used to turn a line
+    <hr/>   This is horizontal role element, used to turn a line
+-->
+
+<p>Hi My name is Sayem. <br> I am from Bangladesh.<br/></p>
+
+<h1>William Blake</h1>
+
+<p>
+    17 south molton street <br>
+    London <br/>
+    W1k 5QT <br>
+    UK <br/>
+</p>
+
+<hr>
+<hr/>
+
+<p>This is paragraph</p>
+
+<!--
+    -----------------------------------
+    -----------------------------------
+    List : 
+    -----------------------------------
+    -----------------------------------
+-->
+
+<ul>
+    <li>A</li>
+    <li>
+        B
+        <ol>
+            <li>B1</li>
+            <li>B2
+                <ul>
+                    <li>B2a
+                        <ul>
+                            <li>B2aa</li>
+                            <li>B2ab</li>
+                        </ul>
+                    </li>
+                    <li>B2b</li>
+                    <li>B2c</li>
+                </ul>
+            </li>
+            <li>B3
+                <ol>
+                    <li>B31</li>
+                    <li>B32</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li>C</li>
+</ul>
+
+<!--
+    -----------------------------------
+    -----------------------------------
+    Links :
+    -----------------------------------
+    -----------------------------------
+-->
+
+<!--
+    link use as attribute- href
+
+    attribute example-
+        <tag attribute = value> Content </tag>
+        <a href = "https://www.sayem.bd">This is a link to Sayem</a>
+-->
+
+<a href = "https://www.google.com">This is link to Google</a>
+
+<h1>My top 2 favourite websites</h1>
+<ol>
+    <li><a href = "https://www.codeforces.com">Codeforces</a></li>
+    <li><a href = "https://www.leetcode.com">Leetcode</a></li>
+</ol>
+
+<!--
+    -----------------------------------
+    -----------------------------------
+    Image :
+    -----------------------------------
+    -----------------------------------
+-->
+
+<img src = "image_link">
+<!--Attribute-->
+<br>
+<img src = "image_link" alt = "Picture" />
+
+<!--
+    -----------------------------------
+    -----------------------------------
+    File path :
+    -----------------------------------
+    -----------------------------------
+-->
+
+<!--
+    .  => current path
+    .. => 1st back path
+-->
+
+<h1>All the Animals</h1>
+<h2>Rabbit : </h2>
+<img src = "rabbit.png" alt = "rabbit">
+<h2>Cat</h2>
+<img src="Folder3/cat.png" alt="cat">
+<h2>Dog</h2>
+<img src = "../dog.png" alt = "dog">
+<h2>Fish</h2>
+<img src = "../Folder1/fish.png" alt = "fish">
+<h2>Bird</h2>
+<img src = "../Folder1/Folder2/bird.png" alt = "bird">
+
+<!--
+    -----------------------------------
+    -----------------------------------
+    Web Pages :
+    -----------------------------------
+    -----------------------------------
+-->
+
+<h1>Welcome to My Website!</h1>
+<!-- Add an image of yourself that links to the about page -->
+<a href = "./public/about.html"><img src = "image_link" alt = "Picture"></a>
+<hr>
+<!-- Add a link to contact me page -->
+<a href = "./public/contact.html"><img src = "image_link" alt = "Picture"></a>
