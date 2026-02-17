@@ -1,0 +1,281 @@
+/*
+    -----------------------------------
+    -----------------------------------
+    Properties :
+    -----------------------------------
+    -----------------------------------
+
+    - color: red; = text color.
+    - background-color: red; 
+
+    - font-weight: normal/bold; lighter/bolder(Relative to Parent; -100 : +100); 100/900;(lighter to bolder)
+    - font-size: 20px; 20pt; 1em; 1rem = px is equal 1/96 inch, pt is equal 1/72 inch, 1em is 100% of parent, 1rem is 100% of root
+    - font-family: sans-serif, Helvetica; "Times New Roman", serif = can have backup generic font type using (,) coma. Use ("") when there are spaces.
+
+    - text-align : right; left;
+    - text-transform: capitalize;
+    - text-transform: uppercase;
+    - text-transform: lowercase;
+
+    - height: 200px; 100%;
+    - width: 200px; 100%;
+    - z-index: 0 ; = used to move elements forward or backward.
+
+    - border: 10px solid black(thickness style color.); = Border goes outside, Box remains same.
+    - border-width: 0px 10px 20px 30px; = Goes clockwise: top, right, bottom, left.
+    - border-width: 0px 10px; = top+bottom, left+right.
+    - border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;
+
+    - padding: 20px; = Push border outside, create space between element and border, box remains same.
+
+    - margin: 10px; = Outside of border.
+
+    - position: relative; static; absolute; fixed;
+	- left: 50px;
+	- top: 50px;
+*/
+
+
+/*
+    -----------------------------------
+    -----------------------------------
+    Add css :
+    -----------------------------------
+    -----------------------------------
+*/
+
+/* Inline : (Inside body tag) 
+    <h1 style="color: blue;">Style Me in Blue!</h1>
+*/
+
+/* Internal : (Inside head tag)
+	<style>
+    h1 {
+      color: red ;
+    }
+  </style>
+*/
+
+/* External : (Linked .css file)
+    .html (inside head tag) : <link rel="stylesheet" href="./style.css" />
+*/  
+
+/*
+    -----------------------------------
+    -----------------------------------
+    CSS Selector :
+    -----------------------------------
+    -----------------------------------
+*/
+
+/* Selectors : Universal, tag, class, id, attribute */
+
+/* Universal selector : select everything. */
+* {
+  text-align: center;
+}
+
+/* tag selector : */
+p {
+  color: red;
+}
+
+/* class selector : Class selector use as attribute. A class can be used in many elements. */
+/*  <li class="note">Class selectors.</li>
+    <li class="one two">  = here one and two are separate classes for li */
+    .note {
+  font-size: 20px;
+}
+
+/* Id selector : Id selector use a attribute. Id selector is used for one element only; it should be unique. */
+/*  <li id="id-selector-demo" class="note">ID selectors.</li> */
+#id-selector-demo {
+  color: green;
+}
+
+/* Attribute selector : */
+/* <li class="note" value="4">Attribute selectors.</li> */
+li[value] {
+  color: blue;
+}
+li[value="4"] {
+  color: blue;
+}
+
+/*
+    -----------------------------------
+    -----------------------------------
+    Combining Css Selector :
+    -----------------------------------
+    -----------------------------------
+*/
+
+/* Group : Using a comma (,). */
+selector1, selector2 {     /* apply to both selectors */
+    color: bluevoilet;
+}
+
+/* Child : parent > child (Apply to direct child of left side. Only one level nasted inside.) */
+selector1 > selector2 {
+	color: firebrick;
+}
+
+/* Descendant : Apply to a descendent of left side. */
+selector1 selector2 {
+	color: blue;
+}
+.inner-box p { 
+	color: blue;
+} 
+
+/* Chaining : Apply where all selectors are true. If there are element, always start with element. */
+selector1selector2 {
+    color: seagreen;
+}
+
+/* Combining Combining : */
+selector selector2selector3 {
+	font-size: 2rem;
+}
+
+/*
+    -----------------------------------
+    -----------------------------------
+    Css Properties :
+    -----------------------------------
+    -----------------------------------
+*/
+
+/* Color :
+- color: red; = text color.
+- background-color: red;  
+*/
+
+/* Font :
+- font-weight: normal/bold; lighter/bolder(Relative to Parent; -100 : +100); 100/900;(lighter to bolder)
+- font-size: 20px; 20pt; 1em; 1rem = px is equal 1/96 inch, pt is equal 1/72 inch, 1em is 100% of parent, 1rem is 100% of root
+- font-family: sans-serif, Helvetica; "Times New Roman", serif = can have backup generic font type using (,) coma. Use ("") when there are spaces.
+*/
+
+/* Text Transform :
+- text-align : right; left;
+- text-transform: capitalize;
+- text-transform: uppercase;
+- text-transform: lowercase;
+*/
+
+/* Box Model :
+- height: 200px; 100%;
+- width: 200px; 100%;
+- z-index: 0 ; = used to move elements forward or backward.
+
+- border: 10px solid black(thickness style color.); = Border goes outside, Box remains same.
+- border-width: 0px 10px 20px 30px; = Goes clockwise: top, right, bottom, left.
+- border-width: 0px 10px; = top+bottom, left+right.
+- border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;
+
+- padding: 20px; = Push border outside, create space between element and border, box remains same.
+
+- margin: 10px; = Outside of border.
+
+CSS BOX MODEL:
+
++-------------------------------+
+|          MARGIN               |
+|  +-------------------------+  |
+|  |        BORDER           |  |
+|  |  +-------------------+  |  |
+|  |  |    PADDING        |  |  |
+|  |  |  +-------------+  |  |  |
+|  |  |  |  CONTENT    |  |  |  |
+|  |  |  +-------------+  |  |  |
+|  |  +-------------------+  |  |
+|  +-------------------------+  |
++-------------------------------+
+
+- CONTENT: The actual content of the element (text, image, etc.)
+- PADDING: Space between content and border
+- BORDER: The edge around padding
+- MARGIN: Space outside the border
+*/
+
+/* Content Division Element : 
+Tools : Pesticide for Chrome (Chorome extension) to see div boxes.
+<div></div> = Use as container.
+*/
+
+/*
+    -----------------------------------
+    -----------------------------------
+    Cascade : Type, Position, Specificity, Keyword (!important)
+    -----------------------------------
+    -----------------------------------
+*/
+
+/* Type :
+external -> internal -> inline(final).
+*/
+
+/* Position: lower(final).
+	li {
+		color: red;
+		color: blue;
+		}
+	li {
+		color: green; (final)
+		}
+*/
+
+/* Specificity : selector - element -> class -> attribute -> id (final)
+	<li id="id" class="class" draggable>
+	
+	li {color: blue;}
+	.class {color: red;}
+	li[draggable] {color: purple;}
+	#id {color: orange;} (final)
+*/
+
+/* Keyword : !important
+    color: red;
+    color: green !important; (final)
+*/
+
+/*
+    -----------------------------------
+    -----------------------------------
+    Positioning : Static, Relative, Absolute, Fixed
+    -----------------------------------
+    -----------------------------------
+*/
+
+/* Static Positioning :
+	By default.
+	
+	position: static;
+	left: 50px; = not working
+	top: 50px;  = not working
+*/
+
+/* Relative Positioning :
+	Position relevent to default position.
+	
+	position: relative;
+	left: 50px;
+	top: 50px;
+*/
+
+/* Absolute Positioning :
+	Position relative to nearest positioned ancestor or top left corner of webpage.
+	
+	position: absolute;
+	top: 50px;
+	left: 50px;
+*/
+
+/* Fixed Positioning :
+	Position relative to top left corner of browser window.
+	
+	position: fixed;
+	top: 50px;
+	left: 50px;
+*/
