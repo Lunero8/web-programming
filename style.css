@@ -279,3 +279,80 @@ external -> internal -> inline(final).
 	top: 50px;
 	left: 50px;
 */
+
+/*
+    -----------------------------------
+    -----------------------------------
+    CSS Display : 
+    -----------------------------------
+    -----------------------------------
+*/
+
+/*
+    display: inline; = Element stays in same line.
+    display: block; = Element takes full width and starts new line.
+    display: inline-block; = Stays in same line but allows width & height.
+    display: none; = Element is completely hidden.
+
+    <span></span> = Used inside <p> or other elements, Default display value = inline
+*/
+
+/*
+    -----------------------------------
+    -----------------------------------
+    CSS Float : 
+    -----------------------------------
+    -----------------------------------
+*/
+
+/* 
+    float: left; 
+    float: right;
+        The element goes to the left(left)/right(right). 
+        Other content like <p>) flows around it on the left/right side.
+        Looks like a newspaper layout.
+
+    clear: left; right; both; 
+        Stops floating from the left/right/both side.
+        The element will move below the floated element.
+        It will NOT stay beside it.
+        Starts from the bottom of the floated element.
+*/
+
+/*
+    -----------------------------------
+    -----------------------------------
+    Responsive :
+    -----------------------------------
+    -----------------------------------
+*/
+
+/*
+    4 ways :
+    - Media Queries
+    - CSS Grid
+    - CSS Flexbox
+    - External framework e.g. Bootstrap
+*/
+
+/*
+    Media Queries :
+        - width max 2600 
+        @media (max-width: 600px){   - 600 or less                   
+            - css for below or equal to 600px wide 
+        }
+        @media (min-width: 600px){  - 600 or more                  
+            - css for below or equal to 600px wide 
+        }
+        @media (min-width: 600px) and (max-width: 900px) {  - 600 to 900                   
+            - css for below or equal to 600px wide 
+        }
+        @media (max-width: 600px) and (min-width: 900px) {  - 600 or les and 900 or more                   
+            - css for below or equal to 600px wide 
+        }
+
+        - Device Orientation  - not recommended 
+        @media screen(orientation: landscape) {
+            - Style for landscape orientation 
+        }
+*/
