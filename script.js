@@ -41,13 +41,21 @@
 
 
 
-    // Declaring variables
+/*
+    ===================================
+    Declaring variables:
+    ===================================
+*/
         let age = 25;        // can be reassigned later
         const name = "Sam";  // cannot be reassigned
         var old = "avoid";   // legacy way, don't use  
         // use "const" unless you know the value will change, then use "let"
 
-    // Data types
+/*
+    ===================================
+    Data types: 
+    ===================================
+*/    
         let str = "hello";          // string
         let num = 42;               // number (no separate int/float — just "number")
         let big = 42n;              // BigInt (for huge numbers, rare use)
@@ -73,6 +81,11 @@
 
 
 
+/*
+    ===================================
+    Input and Outpur:
+    ===================================
+*/
     // input
         prompt("What is your name") ;
 
@@ -87,6 +100,11 @@
 
 
 
+/*
+    ===================================
+    Operators, if-else, loops:
+    ===================================
+*/
     // Operators, == vs ===
         5 == "5"      // true   → loose equality, converts types before comparing
         5 === "5"     // false  → strict equality, no conversion, checks type AND value
@@ -162,7 +180,11 @@
 
 
 
-    // Functions
+/*
+    ===================================
+    Functions:
+    ===================================
+*/
         // Function declaration
         function add(a, b) {
             return a + b;
@@ -228,7 +250,11 @@
 
     
 
-    // Arrays
+/*
+    ===================================
+    Arrays:
+    ===================================
+*/
         // basic
         const arr20 = [10, 20, 30, 40];
 
@@ -249,7 +275,11 @@
 
 
     
-    // Objects
+/*
+    ===================================
+    Objects:
+    ===================================
+*/
         // Object basics
         const person = {
             name: "Alice",
