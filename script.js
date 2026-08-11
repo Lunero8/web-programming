@@ -14,6 +14,13 @@
 
     prompt() → get inputs
     prompt("Whats your name");
+
+    reduce() → takes an array and collapses it into a single value
+    const nums = [1, 2, 3, 4];
+    console.log(nums.reduce((a, b) => a + b, 0));   // 10
+    const nums = [4, 9, 2, 7];
+    const max = nums.reduce((acc, curr) => (curr > acc ? curr : acc));
+    console.log(max);   // 9
 */
 
 
@@ -177,15 +184,28 @@
             const result = a * b;
             return result;
         }
+        console.log(add(4, 6));    // 10
+        console.log(add(2, 3));    // 5
+        console.log(add(-1, 1));   // 0
 
         // Parameters
         function greet(name = "Guest") {
-            console.log("Hello, ${name}");
+            console.log(`Hello, ${name}`); // "Hello Guest" backticks → replaces with actual value
+            console.log("Hello, ${name}"); // "Hello, ${name}" double quotes → prints literal text "${name}" 
+            console.log('Hello, ${name}'); // 'Hello, ${name}' single quotes → prints literal text "${name}"
         }
         greet();        // "Hello Guest"
         greet("Sam");   // "Hello Sam"
 
+
         function sum(...nums) {
             return nums.reduce((a, b) => a + b, 0);
+            // nums = [1, 2, 3, 4]
+            // reduce starts with 0, then adds each number one by one:
+            // 0 + 1 = 1
+            // 1 + 2 = 3
+            // 3 + 3 = 6
+            // 6 + 4 = 10
+            // final result = 10
         }
         console.log(sum(1, 2, 3, 4));   // 10
