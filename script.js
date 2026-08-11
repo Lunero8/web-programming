@@ -21,6 +21,15 @@
     const nums = [4, 9, 2, 7];
     const max = nums.reduce((acc, curr) => (curr > acc ? curr : acc));
     console.log(max);   // 9
+
+    Arrays:
+    arr.length;
+    arr.push(4);        // adds to end → [1,2,3,4]
+    arr.pop();           // removes from end → [1,2,3]
+    arr.unshift(0);      // adds to start → [0,1,2,3]
+    arr.shift();          // removes from start → [1,2,3]
+    arr.slice(1, 3);      // returns NEW array, elements from index 1 to 2 (end exclusive) → [2,3], doesn't modify original array
+    arr.splice(1, 1);     // REMOVES 1 element starting at index 1, MODIFIES original array, arr becomes [1,3]
 */
 
 
@@ -209,3 +218,24 @@
             // final result = 10
         }
         console.log(sum(1, 2, 3, 4));   // 10
+
+    
+
+    // Arrays
+        // basic
+        const arr20 = [10, 20, 30, 40];
+
+        arr20[0];                   // 10 (zero-indexed)
+        arr20.length;               // 4
+        arr20[arr20.length - 1];    // 40 (last element)
+
+        const arr21 = [1, 2, 3];
+
+        arr21.push(4);              // adds to end → [1,2,3,4]
+        arr21.pop();                // removes from end → [1,2,3]
+        arr21.unshift(0);           // adds to start → [0,1,2,3]
+        arr21.shift();              // removes from start → [1,2,3]
+        arr21.slice(1, 3);          // returns NEW array, elements from index 1 to 2 (end exclusive) → [2,3], doesn't modify original array
+        arr21.splice(1, 1);         // REMOVES 1 element starting at index 1, MODIFIES original array, arr becomes [1,3]
+        // slice → doesn't change original, just returns a piece
+        // splice → changes the original array directly (can remove/add/replace elements)
