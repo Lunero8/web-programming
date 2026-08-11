@@ -236,7 +236,7 @@
         arr20.length;               // 4
         arr20[arr20.length - 1];    // 40 (last element)
 
-        const arr21 = [1, 2, 3];
+        const arr21 = [1, 2, 3]; // let arr21 = [1, 2, 3];
 
         arr21.push(4);              // adds to end → [1,2,3,4]
         arr21.pop();                // removes from end → [1,2,3]
@@ -264,3 +264,32 @@
         person.great();         // "Hi, I'm Alice"
         person.city = "NYC";    // add new property
         delete person.age;      // remove property
+
+        // Object.keys / values / entries
+        const obj3 = { a: 1, b: 2, c: 3 };
+
+        Object.keys(obj3);      // ["a", "b", "c"]
+        Object.values(obj3);     // [1, 2, 3]
+        Object.entries(obj3);     // [["a",1], ["b",2], ["c",3]]
+
+        // commonly used to loop objects safely
+        Object.entries(obj3).forEach(([key, val]) => {
+        console.log(key, val);
+        });
+
+        // Nested objects/arrays (very common in real data)
+        const user = {
+        name: "Alice",
+        address: {
+            city: "NYC",
+            zip: "10001"
+        },
+        hobbies: ["reading", "chess"]
+        };
+
+        user.address.city;       // "NYC"
+        user.hobbies[0];          // "reading"
+
+        // nested destructuring
+        const { address: { city } } = user;
+        console.log(city);        // "NYC"
