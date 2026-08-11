@@ -4,32 +4,39 @@
     ===================================
 
     alert() → shows a popup window with a message
-    alert("Hello!");
+        alert("Hello!");
 
     typeof() → returns the data type of a value (as a string)
-    typeof(123);     // "number"
-    typeof("123");   // "string"
-    typeof(true);    // "boolean"
-    typeof(undefined); // "undefined"  
+        typeof(123);     // "number"
+        typeof("123");   // "string"
+        typeof(true);    // "boolean"
+        typeof(undefined); // "undefined"  
 
     prompt() → get inputs
-    prompt("Whats your name");
+        prompt("Whats your name");
 
     reduce() → takes an array and collapses it into a single value
-    const nums = [1, 2, 3, 4];
-    console.log(nums.reduce((a, b) => a + b, 0));   // 10
-    const nums = [4, 9, 2, 7];
-    const max = nums.reduce((acc, curr) => (curr > acc ? curr : acc));
-    console.log(max);   // 9
+        const nums = [1, 2, 3, 4];
+        console.log(nums.reduce((a, b) => a + b, 0));   // 10
+        const nums = [4, 9, 2, 7];
+        const max = nums.reduce((acc, curr) => (curr > acc ? curr : acc));
+        console.log(max);   // 9
 
     Arrays:
-    arr.length;
-    arr.push(4);        // adds to end → [1,2,3,4]
-    arr.pop();           // removes from end → [1,2,3]
-    arr.unshift(0);      // adds to start → [0,1,2,3]
-    arr.shift();          // removes from start → [1,2,3]
-    arr.slice(1, 3);      // returns NEW array, elements from index 1 to 2 (end exclusive) → [2,3], doesn't modify original array
-    arr.splice(1, 1);     // REMOVES 1 element starting at index 1, MODIFIES original array, arr becomes [1,3]
+        arr.length;
+        arr.push(4);        // adds to end → [1,2,3,4]
+        arr.pop();           // removes from end → [1,2,3]
+        arr.unshift(0);      // adds to start → [0,1,2,3]
+        arr.shift();          // removes from start → [1,2,3]
+        arr.slice(1, 3);      // returns NEW array, elements from index 1 to 2 (end exclusive) → [2,3], doesn't modify original array
+        arr.splice(1, 1);     // REMOVES 1 element starting at index 1, MODIFIES original array, arr becomes [1,3]
+
+    Objects:
+        person.name;            // dot notation → "Alice"
+        person["name"];         // bracket notation → "Alice" (needed if key is dynamic/variable)
+        person.great();         // "Hi, I'm Alice"
+        person.city = "NYC";    // add new property
+        delete person.age;      // remove property
 */
 
 
@@ -239,3 +246,21 @@
         arr21.splice(1, 1);         // REMOVES 1 element starting at index 1, MODIFIES original array, arr becomes [1,3]
         // slice → doesn't change original, just returns a piece
         // splice → changes the original array directly (can remove/add/replace elements)
+
+
+    
+    // Objects
+        // Object basics
+        const person = {
+            name: "Alice",
+            age: 30,
+            greet: function() {
+                console.log(`Hi, I'm ${this.name}`);
+            }
+        };
+
+        person.name;            // dot notation → "Alice"
+        person["name"];         // bracket notation → "Alice" (needed if key is dynamic/variable)
+        person.great();         // "Hi, I'm Alice"
+        person.city = "NYC";    // add new property
+        delete person.age;      // remove property
