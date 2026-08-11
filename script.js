@@ -136,3 +136,56 @@
         console.log(index);    // "0", "1", "2"  (as strings!)
         }
         //  for...of = values, for...in = keys
+
+
+
+    // Functions
+        // Function declaration
+        function add(a, b) {
+            return a + b;
+        };
+
+        console.log(add(2, 3)); // 5
+        // -----------------------------------
+        console.log(add(2,5)); // works fine, prints 5
+
+        function add(a, b){
+            return a + b;
+        };
+
+        function isEven(n) {
+            return n % 2 === 0;   
+        }
+
+        // Function expression
+        const add = function(a, b) {
+            return a + b;
+        };
+
+        console.log(add(2, 3));   // 5
+        // ---------------------------------------
+        console.log(add(2, 3));   // Error: Cannot access 'add' before initialization
+        const add = function(a, b) { 
+            return a + b; 
+        };
+
+        // Arrow functions
+        const add = (a, b) => a + b;
+        const square =  x => x * x;
+        const greet = () => console.log("hi");
+        const multiple_line = (a, b) => {
+            const result = a * b;
+            return result;
+        }
+
+        // Parameters
+        function greet(name = "Guest") {
+            console.log("Hello, ${name}");
+        }
+        greet();        // "Hello Guest"
+        greet("Sam");   // "Hello Sam"
+
+        function sum(...nums) {
+            return nums.reduce((a, b) => a + b, 0);
+        }
+        console.log(sum(1, 2, 3, 4));   // 10
