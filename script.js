@@ -37,6 +37,50 @@
         person.great();         // "Hi, I'm Alice"
         person.city = "NYC";    // add new property
         delete person.age;      // remove property
+
+    Strings:
+        str[0];         // "H"
+        str.length;      // 5
+        str[str.length - 1];   // "o" (last character)
+
+        str.slice(0, 5);       // "Hello" (like array slice — start to end, end exclusive)
+        str.slice(-5);          // "World" (negative = from the end)
+        str.toUpperCase();       // "HELLO WORLD"
+        str.toLowerCase();        // "hello world"
+        str.charAt(0);             // "H" (alternative to str[0])
+
+        // Searching within strings
+        str.includes("World");      // true
+        str.indexOf("World");        // 6 (starting index, -1 if not found)
+        str.startsWith("Hello");      // true
+        str.endsWith("World");         // true
+
+        // Case conversion & trimming
+        "  hello  ".trim();          // "hello" (removes whitespace from both ends)
+        "  hello  ".trimStart();      // "hello  "
+        "  hello  ".trimEnd();         // "  hello"
+        "HELLO".toLowerCase();          // "hello"
+        "hello".toUpperCase();           // "HELLO"
+
+        // Splitting & joining
+        "a,b,c".split(",");            // ["a", "b", "c"]
+        "hello".split("");              // ["h","e","l","l","o"]  (split into individual chars)
+        ["a", "b", "c"].join("-");       // "a-b-c"
+        ["a", "b", "c"].join("");         // "abc"
+
+        // Replace
+        "Hello World".replace("World", "JS");        // "Hello JS" (replaces first match)
+        "a-a-a".replaceAll("a", "b");                  // "b-b-b" (replaces ALL matches)
+
+        // Comparing strings
+        "apple" === "apple";       // true
+        "apple" === "Apple";        // false → case-sensitive
+        "apple" < "banana";          // true → alphabetical comparison
+
+        // Concatenation (multiple ways)
+        first + " " + last;             // "John Doe" → old way
+        `${first} ${last}`;              // "John Doe" → preferred, template literal
+        first.concat(" ", last);           // "John Doe" → rarely used
 */
 
 
@@ -323,3 +367,76 @@
         // nested destructuring
         const { address: { city } } = user;
         console.log(city);        // "NYC"
+
+
+
+/*
+    ===================================
+    Strings:
+    ===================================
+*/
+    // Creating strings
+        const s1 = "hello";
+        const s2 = 'hello';
+        const s3 = `hello`;     // template literal — allows ${} substitution
+        // All three work the same for plain text. Backticks are special because they allow ${variable} 
+        // and multi-line strings:
+        const multi = `line one
+        line two`;      // actual newline preserved
+
+        // Strings are immutable, you can't change a character directly
+        s1[0] = "J";
+        console.log(s1);   // "hello" ← unchanged! No error, just silently fails
+
+    // Strings functions / methods
+        // Common string methods
+        const str2 = "Hello";
+
+        str[0];         // "H"
+        str.length;      // 5
+        str[str.length - 1];   // "o" (last character)
+
+        const str3 = "Hello World";
+
+        str3.slice(0, 5);       // "Hello" (like array slice — start to end, end exclusive)
+        str3.slice(-5);          // "World" (negative = from the end)
+        str3.toUpperCase();       // "HELLO WORLD"
+        str3.toLowerCase();        // "hello world"
+        str3.charAt(0);             // "H" (alternative to str[0])
+
+        // Searching within strings
+        str3.includes("World");      // true
+        str3.indexOf("World");        // 6 (starting index, -1 if not found)
+        str3.startsWith("Hello");      // true
+        str3.endsWith("World");         // true
+
+        // Case conversion & trimming
+        "  hello  ".trim();          // "hello" (removes whitespace from both ends)
+        "  hello  ".trimStart();      // "hello  "
+        "  hello  ".trimEnd();         // "  hello"
+
+        "HELLO".toLowerCase();          // "hello"
+        "hello".toUpperCase();           // "HELLO"
+
+        // Splitting & joining
+        "a,b,c".split(",");            // ["a", "b", "c"]
+        "hello".split("");              // ["h","e","l","l","o"]  (split into individual chars)
+        ["a", "b", "c"].join("-");       // "a-b-c"
+        ["a", "b", "c"].join("");         // "abc"
+
+        // Replace
+        "Hello World".replace("World", "JS");        // "Hello JS" (replaces first match)
+        "a-a-a".replaceAll("a", "b");                  // "b-b-b" (replaces ALL matches)
+
+        // Comparing strings
+        "apple" === "apple";       // true
+        "apple" === "Apple";        // false → case-sensitive
+        "apple" < "banana";          // true → alphabetical comparison
+
+        // Concatenation (multiple ways)
+        const first = "John";
+        const last = "Doe";
+
+        first + " " + last;             // "John Doe" → old way
+        `${first} ${last}`;              // "John Doe" → preferred, template literal
+        first.concat(" ", last);           // "John Doe" → rarely used
