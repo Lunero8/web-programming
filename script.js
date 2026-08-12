@@ -81,6 +81,27 @@
         first + " " + last;             // "John Doe" → old way
         `${first} ${last}`;              // "John Doe" → preferred, template literal
         first.concat(" ", last);           // "John Doe" → rarely used
+    
+    Set:
+        const unique = new Set(nums);
+        console.log(unique);                // Set(3) {1, 2, 3}
+
+        const arr = [...unique];            // convert back to array
+        console.log(arr);                   // [1, 2, 3]
+
+        const deduped = [...new Set(nums)];
+        console.log(deduped);               // [1, 2, 3]
+
+        unique.add(4);
+        unique.has(2);                      // true
+        unique.delete(1);
+        unique.size;                        // number of items
+
+    Map:
+        map.get("name");        // "Alice"
+        map.has("age");         // true
+        map.delete("age");
+        map.size;               // 1
 */
 
 
@@ -122,6 +143,16 @@
         typeof null        // "object" this is a famous JS bug, ignore the weirdness
         typeof [1,2,3]      // "object" (arrays are technically objects)
         typeof {}           // "object"
+
+    // Falsy values (only these 6)
+        /*
+            false
+            0
+            ""          // empty string
+            null
+            undefined
+            NaN
+        */
 
 
 
@@ -440,3 +471,124 @@
         first + " " + last;             // "John Doe" → old way
         `${first} ${last}`;              // "John Doe" → preferred, template literal
         first.concat(" ", last);           // "John Doe" → rarely used
+
+
+
+/*
+    ===================================
+    Advanced Language Features:
+    ===================================
+*/
+    // Truthy / Falsy
+        // In JS, every value is either "truthy" or "falsy" when used in a boolean context (like if), even if it's not literally true/false
+
+        // Falsy values (only these 6)
+        /*
+            false
+            0
+            ""          // empty string
+            null
+            undefined
+            NaN
+        */
+
+        // Everything else is truthy, including things you might not expect:
+        /*
+            "0"          // truthy! (non-empty string)
+            "false"       // truthy! (non-empty string)
+            []             // truthy! (empty array is still truthy)
+            {}              // truthy! (empty object is still truthy)
+        */
+        
+        if ("") {
+            console.log("truthy");
+        } else {
+            console.log("falsy");     // this runs
+        }
+
+        if ([]) {
+            console.log("truthy");     // this runs! empty array is truthy
+        }
+
+        function greet(name) {
+            if (name) {          // checks truthy, not just undefined
+                console.log(`Hello ${name}`);
+            } else {
+                console.log("Hello stranger");
+            }
+        }
+        greet("");        // "Hello stranger" — empty string is falsy
+        greet("Sam");       // "Hello Sam"
+        greet();              // "Hello stranger" — undefined is falsy
+
+    // Optional chaining ?.
+        // Safely access nested properties without crashing if something's missing.
+        const user4 = { name: "Alice" };
+
+        console.log(user4.address.city);     // Error: Cannot read properties of undefined
+        console.log(user4.address?.city);     // undefined (no crash)
+
+        // Without ?., trying to read a property of undefined/null throws an error and crashes your program. With ?., JS just returns undefined instead of crashing.
+
+        // Works with function calls too
+        user.greet?.();     // calls greet() only if it exists, otherwise does nothing (no error)
+
+    // Nullish coalescing ??
+        // Provides a fallback value only when the left side is null or undefined (NOT for other falsy values like 0 or "")
+        const count = 0;
+        console.log(count || 10);     // 10 : WRONG, if 0 is a valid value! (|| treats 0 as falsy)
+        console.log(count ?? 10);      // 0 : correct, only falls back on null/undefined
+
+        let a1 = null;
+        let b1 = undefined;
+        let c1 = 0;
+        let d1 = "";
+
+        console.log(a1 ?? "default");    // "default"
+        console.log(b1 ?? "default");     // "default"
+        console.log(c1 ?? "default");      // 0        ← kept, because 0 isn't null/undefined
+        console.log(d1 ?? "default");       // ""       ← kept, same reason
+
+        // use ?? instead of || when you want to allow 0, "", or false as valid values, and only fall back for truly missing (null/undefined) data.
+
+    // && and || as shortcuts
+        // && → runs right side only if left is truthy
+        const isLoggedIn = true;
+        isLoggedIn && console.log("Welcome!");    // prints, since isLoggedIn is truthy
+
+        // || → common way to set defaults (careful with falsy values, see above)
+        const name2 = userInput || "Guest";
+
+    // Set: Collection of unique values
+        // Very handy for removing duplicates from an array in one line
+        const nums = [1, 2, 2, 3, 3, 3];
+        const unique = new Set(nums);
+        console.log(unique);            // Set(3) {1, 2, 3}
+
+        const arr5 = [...unique];        // convert back to array
+        console.log(arr5);               // [1, 2, 3]
+
+        unique.add(4);
+        unique.has(2);                  // true
+        unique.delete(1);
+        unique.size;                    // number of items
+        
+        const arr6 = [1, 1, 2, 2, 3];
+        const deduped = [...new Set(arr6)];
+        console.log(deduped);           // [1, 2, 3]
+
+    // Map: key-value pairs (like an object, but more flexible)
+        // Difference from objects: Map keys can be any type (numbers, objects, even functions), not just strings. Objects only allow string/symbol keys.
+        const map = new Map();
+        map.set("name", "Alice");
+        map.set("age", 30);
+
+        map.get("name");     // "Alice"
+        map.has("age");        // true
+        map.delete("age");
+        map.size;                // 1
+
+        // iterate
+        for (const [key, value] of map) {
+        console.log(key, value);
+        }
