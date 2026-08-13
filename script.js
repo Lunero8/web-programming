@@ -102,6 +102,18 @@
         map.has("age");         // true
         map.delete("age");
         map.size;               // 1
+
+    Useful built-ins for CP:
+        Math.max(1, 5, 3);                      // 5
+        Math.min(1, 5, 3);                      // 1
+        Math.max(...arr);                       // finds max in array
+        Math.floor(4.7);                        // 4
+        Math.ceil(4.2);                         // 5
+        Math.abs(-5);                           // 5
+        Math.pow(2, 10);                        // 1024
+        2 ** 10;                                // 1024 (exponent operator, same thing)
+        Array(5).fill(0);                       // [0,0,0,0,0] create pre-filled array
+        Array.from({length: 5}, (_, i) => i);   // [0,1,2,3,4] generate a range
 */
 
 
@@ -1188,3 +1200,136 @@
         document.body.appendChild(newDiv);        // adds to end of body
 
         document.body.removeChild(newDiv);        // removes it
+
+
+
+/*
+    ===================================
+    Competitive Programming Specifics:
+    ===================================
+*/
+    /*
+        Fast I/O (recap + solidify)
+        Common pitfalls with arrays/objects
+        Number limits & BigInt
+        Time complexity of built-in methods
+        Useful built-ins for CP
+        A full solved example
+    */
+
+    // Fast I/O : the standard template
+        /*
+            const input = require('fs').readFileSync('/dev/stdin', 'utf8').split('\n');
+            let idx = 0;
+            const nextLine = () => input[idx++];
+
+            // Example: first line = N, second line = N space-separated numbers
+            const n = Number(nextLine());
+            const arr = nextLine().split(' ').map(Number);
+
+            console.log(arr.reduce((a, b) => a + b, 0));
+        */
+
+    // Common pitfalls
+        // Copying arrays: reference vs actual copy
+            const aa = [1, 2, 3];
+            const ba = aa;              // same reference, modifying b changes a too
+            const ca = [...aa];         // real copy
+            const da = aa.slice();      // also a real copy
+        
+        // Sorting numbers: default sort is string-based:
+            [10, 2, 33].sort();                 // [10, 2, 33] wrong (string sort)
+            [10, 2, 33].sort((a, b) => a - b);  // [2, 10, 33] correct
+        
+        // Checking array equality === doesn't work:
+            /*
+                [1,2] === [1,2]      // false (different objects in memory, even if same content)
+                JSON.stringify([1,2]) === JSON.stringify([1,2])   // true common CP trick
+            */
+
+    // Number limits & BigInt
+        Number.MAX_SAFE_INTEGER;            // 9007199254740991 (~9 * 10^15)
+
+        // Beyond this, regular numbers lose precision, dangerous for CP problems with large sums/factorials.
+
+        let big2 = 123456789123456789n;     // BigInt — append 'n'
+        let sum = big2 + 1n;                // must combine BigInt with BigInt, not regular numbers
+        console.log(sum);                   // 123456789123456790n
+
+        // You can't mix BigInt and regular number directly:
+        10n + 5     // Error: Cannot mix BigInt and other types
+        10n + 5n    // 15n
+
+    // Time complexity of built-ins (important for CP, easy to forget)
+        /*
+                Method	                    Time complexity
+            ==========================================================
+            arr.push() / pop()	            O(1)
+            arr.shift() / unshift()	        O(n) — shifts all elements
+            arr.includes()	                O(n)
+            arr.sort()	                    O(n log n)
+            Set.has()	                    O(1) average
+            Map.get()	                    O(1) average
+            Object key lookup	            O(1) average
+        */
+
+        // Practical tip: if you need frequent lookups, use Set/Map instead of .includes() on arrays repeatedly, .includes() is O(n) every call, so doing it in a loop turns your algorithm O(n²).
+
+    // Useful built-ins for CP
+        Math.max(1, 5, 3);                      // 5
+        Math.min(1, 5, 3);                      // 1
+        Math.max(...arr);                       // finds max in array
+        Math.floor(4.7);                        // 4
+        Math.ceil(4.2);                         // 5
+        Math.abs(-5);                           // 5
+        Math.pow(2, 10);                        // 1024
+        2 ** 10;                                // 1024 (exponent operator, same thing)
+        Array(5).fill(0);                       // [0,0,0,0,0] create pre-filled array
+        Array.from({length: 5}, (_, i) => i);   // [0,1,2,3,4] generate a range
+
+    
+    // Full worked example
+        /*
+            Problem: Read N, then N numbers. Print the max and the sum.
+        */
+
+        // Input:
+        /*
+            5
+            3 7 2 9 4
+        */
+
+        // Code
+            const input = require('fs').readFileSync('/dev/stdin', 'utf8').split('\n');
+
+            const n = Number(input[0]);
+            const arr33 = input[1].split(' ').map(Number);
+
+            const max = Math.max(...arr33);
+            const sum = arr33.reduce((a, b) => a + b, 0);
+
+            console.log(max);   // 9
+            console.log(sum);   // 25
+
+
+
+/*
+    ====================================
+    ====================================
+*/
+
+/*
+    That covers:
+
+    Variables & types
+    Functions
+    Arrays & objects
+    Strings
+    Advanced features (truthy/falsy, optional chaining, Set/Map)
+    Async JS
+    Classes/OOP
+    Modules
+    Node.js specifics
+    Browser/DOM
+    Competitive programming patterns
+*/
