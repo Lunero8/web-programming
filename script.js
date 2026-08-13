@@ -744,3 +744,123 @@
                 .then(data => console.log(data))
                 .catch(err => console.log(err));
         }
+
+
+
+/*
+    ===================================
+    Classes / OOP:
+    ===================================
+*/
+    /*
+        Class basics (constructor, methods)
+        Instances (new)
+        Inheritance (extends, super)
+        Getters/setters
+        Static methods
+        Private fields
+    */
+
+    // Class basics
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`Hi, I'm ${this.name}, age ${this.age}`);
+            }
+        }
+        // constructor runs automatically when you create a new instance, sets up initial properties.
+        // Methods (like greet) are shared across all instances (not copied per object, more memory-efficient).
+
+    // Creating instances (new)
+        const p1 = new Person("Alice", 30);
+        const p2 = new Person("Bob", 25);
+
+        p1.greet();   // "Hi, I'm Alice, age 30"
+        p2.greet();   // "Hi, I'm Bob, age 25"
+        // new creates a fresh object, runs the constructor, and links it to the class's methods.
+    
+    // Inheritance (extends and super)
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+            speak() {
+                console.log(`${this.name} makes a sound`);
+            }
+        }
+
+        class Dog extends Animal {
+            constructor(name, breed) {
+                super(name);          // calls the parent's constructor
+                this.breed = breed;
+            }
+            speak() {                 // overrides parent's speak()
+                console.log(`${this.name} barks`);
+            }
+        }
+
+        const d = new Dog("Rex", "Labrador");
+        d.speak();       // "Rex barks"
+        console.log(d.breed);   // "Labrador"
+
+        // super() must be called first in a child class's constructor, before using `this`, otherwise JS throws an error. It runs the parent class's constructor logic so `this` gets properly set up.
+
+        // Calling parent's method from child (not just overriding it)
+        class Dog extends Animal {
+            speak() {
+                super.speak();              // calls Animal's speak() first
+                console.log(`${this.name} also barks`);
+            }
+        }
+    
+    // Getters / setters
+        class Circle {
+            constructor(radius) {
+                this.radius = radius;
+            }
+            get area() {                // accessed like a property, not called like a method
+                return Math.PI * this.radius ** 2;
+            }
+            set diameter(d) {           // lets you "assign" to something that runs custom logic
+                this.radius = d / 2;
+            }
+        }
+
+        const c = new Circle(5);
+        console.log(c.area);            // 78.53... (no parentheses — called like a property!)
+        c.diameter = 20;                // uses the setter
+        console.log(c.radius);          // 10
+
+    // Static methods: belong to the class itself, not instances
+        class MathHelper {
+            static square(n) {
+                return n * n;
+            }
+        }
+
+        MathHelper.square(5);           // 25
+        const m = new MathHelper();
+        m.square(5);                    // Error, static methods aren't available on instances
+        // Used for utility functions related to the class but not tied to a specific instance's data.
+
+    // Private fields (modern JS feature)
+        class BankAccount {
+            #balance = 0;               // # prefix = private, only accessible inside the class
+
+            deposit(amount) {
+                this.#balance += amount;
+            }
+            getBalance() {
+                return this.#balance;
+            }
+        }
+
+        const acc = new BankAccount();
+        acc.deposit(100);
+        console.log(acc.getBalance());  // 100
+        /* console.log(acc.#balance); */     // Error, can't access from outside the class
+        // This gives real encapsulation, unlike regular properties (this.balance), which anyone can read/modify directly from outside.
