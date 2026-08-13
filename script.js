@@ -602,7 +602,7 @@
         */
 
 
-            
+
 /*
     ===================================
     Asynchronous JavaScript:
@@ -872,3 +872,106 @@
         console.log(acc.getBalance());  // 100
         /* console.log(acc.#balance); */     // Error, can't access from outside the class
         // This gives real encapsulation, unlike regular properties (this.balance), which anyone can read/modify directly from outside.
+
+
+
+/*
+    ===================================
+    Modules:
+    ===================================
+*/
+    /*
+        Why modules exist
+        ES Modules: export / import (modern standard)
+        Default vs named exports
+        CommonJS: require / module.exports (Node's older style) ⚠️
+        Which one to use
+    */
+    
+    // Why modules exist
+        // Instead of writing all your code in one giant file, you split it into separate files (modules), each handling one responsibility, then import what you need where you need it. Keeps code organized and reusable.
+
+    // ES Modules (modern standard, use this by default)
+        // math.js (exporting):
+        export function add(a, b) {
+            return a + b;
+        }
+
+        export const PI = 3.14159;
+
+        // app.js (importing):
+        import { add, PI } from './math.js';
+        /* 
+            import { 
+                add, PI 
+            } from './math.js'; 
+        */
+
+        console.log(add(2, 3));     // 5
+        console.log(PI);            // 3.14159
+
+        // Named exports must be imported with the exact same name (unless you rename)
+        import { add as sum } from './math.js';   // renamed on import
+        sum(2, 3);                  // 5
+
+    // Default export: one main thing per file
+        // math.js
+        export default function add(a, b) {
+            return a + b;
+        }
+
+        // app.js
+        import add from './math.js';    // no curly braces, and can name it anything
+        console.log(add(2, 3));         // 5
+    
+    // Difference between named and default
+        /*
+            Named exports → use { }, must match export name (or alias it)
+            Default export → no { }, you can call it whatever you want on import
+            A file can have many named exports, but only one default export
+        */
+
+    // CommonJS (Node's older module system)
+        // Before ES Modules were standard in Node, this was (and still is, in many projects) the norm
+        // math.js
+        function add(a, b) {
+            return a + b;
+        }
+        module.exports = { add };
+
+        // app.js
+        const { add } = require('./math.js');
+        console.log(add(2, 3));   // 5
+
+        // Single export version
+        // math.js
+        module.exports = function add(a, b) {
+            return a + b;
+        };
+        // app.js
+        const add = require('./math.js');
+    
+    // Which one should we use?
+        /*
+            ES Modules (import/export): the modern standard, used in frontend (React, Vue, etc.) and increasingly in Node.
+
+            CommonJS (require/module.exports): still very common in older Node projects and many npm packages.
+        */
+
+        /*
+            In Node.js, to use ES Modules, you either:
+
+            Name your file .mjs, or
+            Add "type": "module" in your package.json
+        */
+
+        // Otherwise, Node defaults to expecting CommonJS syntax.
+
+        // package.json
+        /*
+            {
+                "type": "module"
+            }
+        */
+        
+        // Rule of thumb: for new projects, use ES Modules (import/export). You'll still encounter require in older code/tutorials/packages, so recognize it, but write new code with import/export.
