@@ -738,9 +738,9 @@
 
         // What prints first, code before setTimeout, or code after it (if the timeout is 0ms)?
         // Rewrite this using async/await instead of .then()
-            function getData() {
-                fetch(url)
-                    .then(res => res.json())
-                    .then(data => console.log(data))
-                    .catch(err => console.log(err));
-            }
+        function getData() {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => console.log(data))
+                .catch(err => console.log(err));
+        }
