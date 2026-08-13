@@ -1089,3 +1089,102 @@
             npm start           // runs whatever "start" script says in package.json
             npm run dev         // runs a custom script, e.g. "dev": "nodemon app.js"
         */
+
+
+
+/*
+    ===================================
+    Browser-Only JavaScript:
+    ===================================
+*/
+    /*
+        The DOM (Document Object Model)
+        Selecting elements
+        Modifying elements
+        Event listeners
+        window object
+        Basic fetch in the browser
+    */
+
+    // What is the DOM?
+        // When a browser loads an HTML page, it turns that HTML into a tree-like structure in memory called the DOM. JavaScript can read and modify this tree to change what's shown on the page, that's how interactive websites work.
+        <body>
+            <h1 id="title">Hello</h1>
+            <button id="btn">Click me</button>
+        </body>
+
+    // Selecting elements
+        document.getElementById("title");       // selects by id
+        document.querySelector("#title");       // same, modern/preferred (CSS-selector style)
+        document.querySelector(".myClass");     // selects by class
+        document.querySelectorAll("p");         // selects ALL matching elements (returns a list)
+
+        // querySelector vs getElementById: querySelector is more flexible (works with any CSS selector: id, class, tag, nested selectors), so it's generally preferred in modern code.
+
+    // Modifying elements
+        const title = document.querySelector("#title");
+
+        title.textContent = "New Title";        // changes text
+        title.innerHTML = "<b>Bold Title</b>";  // changes HTML content (careful — can be a security risk with user input)
+
+        title.style.color = "red";              // changes CSS directly
+        title.classList.add("highlight");       // add a CSS class
+        title.classList.remove("highlight");    // remove a CSS class
+        title.classList.toggle("highlight");    // add if missing, remove if present
+
+    // Event listeners (core to interactivity)
+        const btn = document.querySelector("#btn");
+
+        btn.addEventListener("click", () => {
+            console.log("Button clicked!");
+        });
+
+        btn.addEventListener("click", function() {
+            console.log(this);                  // regular function → `this` = the button element
+        });
+
+        // Common events: click, input, submit, keydown, mouseover, load
+
+        // Example reading input as user types:
+        /*
+            // html
+                <input id="nameInput" type="text">
+                <p id="output"></p>
+            
+            // javascript
+                const input = document.querySelector("#nameInput");
+                const output = document.querySelector("#output");
+
+                input.addEventListener("input", (e) => {
+                    output.textContent = `You typed: ${e.target.value}`;
+                });
+        */
+
+    // window object
+        // The global object in browsers represents the browser window itself.
+        window.innerWidth;      // browser viewport width
+        window.location.href;   // current URL
+        window.alert("Hi");     // popup (same as just alert("Hi"))
+
+        // Anything declared globally in browser JS technically becomes a property of window (though modern code avoids relying on this).
+
+
+    // fetch in the browser (same as Node, but commonly used to update the page)
+        async function loadUsers() {
+            const res = await fetch("https://api.example.com/users");
+            const users = await res.json();
+
+            const list = document.querySelector("#userList");
+            users.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = user.name;
+                list.appendChild(li);
+            });
+        }
+
+    // Creating & adding elements dynamically
+        const newDiv = document.createElement("div");
+        newDiv.textContent = "I'm new!";
+        document.body.appendChild(newDiv);        // adds to end of body
+
+        document.body.removeChild(newDiv);        // removes it
