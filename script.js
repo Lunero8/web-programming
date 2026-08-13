@@ -975,3 +975,117 @@
         */
         
         // Rule of thumb: for new projects, use ES Modules (import/export). You'll still encounter require in older code/tutorials/packages, so recognize it, but write new code with import/export.
+
+
+
+/*
+    ===================================
+    Node.js Specifics:
+    ===================================
+*/
+    /*
+        process object (argv, env)
+        File system (fs module)
+        npm & package.json
+        Installing & using packages
+        Running scripts
+    */
+
+    // process object (argv, env)
+        process.argv;        // command-line arguments passed to the script
+        process.env;           // environment variables
+        process.exit();          // stop the program manually
+    
+        // Example command-line arguments:
+        /* 
+            // app.js
+            console.log(process.argv);
+
+            // Run with:
+            node app.js hello world
+
+            // Output:
+            [
+                '/path/to/node',
+                '/path/to/app.js',
+                'hello',
+                'world'
+            ]
+            
+            // First two are always Node's path and the file path, your actual arguments start from index 2:
+                        
+            const args = process.argv.slice(2);
+            console.log(args);   // ['hello', 'world']
+        */
+
+    // File system (fs module)
+        // Reading a file:
+            import fs from 'node:fs';
+
+            // synchronous (blocks until done)
+            const data = fs.readFileSync('file.txt', 'utf8');
+            console.log(data);
+
+            // asynchronous (doesn't block, uses callback)
+            fs.readFile('file.txt', 'utf8', (err, data) => {
+                if (err) throw err;
+                console.log(data);
+            });
+
+            // promise-based (modern, use with async/await)
+            import fs2 from 'node:fs/promises';
+            const data2 = await fs2.readFile('file.txt', 'utf8');
+
+        // Writing a file:
+            fs.writeFileSync('output.txt', 'Hello World');
+
+            fs.writeFile('output.txt', 'Hello World', (err) => {
+                if (err) throw err;
+                console.log('File saved');
+            });
+        
+        // Sync vs async: sync methods block everything else until done (fine for small scripts/CP), async methods let other code run while waiting (better for real apps/servers).
+
+    // npm & package.json
+        // package.json is your project's configuration file, lists dependencies, scripts, metadata.
+        /*
+            {
+                "name": "my-app",
+                "version": "1.0.0",
+                "type": "module",
+                "scripts": {
+                    "start": "node app.js"
+                },
+                "dependencies": {
+                    "express": "^4.18.0"
+                }
+            }    
+        */
+
+        // Create one:
+        /*
+            npm init -y
+        */
+
+    // Installing & using packages
+        /*
+            npm install express         // installs a package, adds to package.json
+            npm install -D nodemon      // installs as a dev dependency (only needed during development)
+            npm install                 // installs everything listed in package.json (e.g. after cloning a repo)
+        */
+
+        // Using an installed package:
+        import express from 'express';
+
+        const app = express();
+        app.get('/', (req, res) => res.send('Hello World'));
+        app.listen(3000, () => console.log('Server running'));
+
+        // Installed packages live in a node_modules folder (auto-generated, never edit manually, usually excluded from git via .gitignore).
+
+    // Running scripts
+        /*
+            node app.js         // run directly
+            npm start           // runs whatever "start" script says in package.json
+            npm run dev         // runs a custom script, e.g. "dev": "nodemon app.js"
+        */
