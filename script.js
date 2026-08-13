@@ -592,3 +592,155 @@
         for (const [key, value] of map) {
         console.log(key, value);
         }
+
+
+
+/*
+    ===================================
+    Asynchronous JavaScript:
+    ===================================
+*/
+    /* 
+        Asynchronous JavaScript
+
+        This is one of the most important JS-specific topics — spend real time here. Here's what we'll cover:
+
+        Why async exists (single-threaded + event loop)
+        Callbacks (and callback hell)
+        Promises
+        async / await
+        Error handling (try/catch)
+        Promise.all → running things in parallel
+        setTimeout / setInterval
+    */
+
+    // Why async exists (single-threaded + event loop):
+    // JS runs on a single thread, it can only do one thing at a time. But things like network requests, file reads, or timers take time to complete, and JS can't afford to freeze while waiting.
+    // So JS uses an event loop: it starts a slow task, moves on to other code immediately, and comes back to handle the result later, once it's ready without blocking anything else.
+        console.log("1");
+        // setTimeout(() => , );
+        setTimeout(() => console.log("2"), 1000);   // scheduled for later, doesn't block
+        console.log("3");
+
+        // Output order:
+        // 1
+        // 3
+        // 2   ← printed last, even though it's written 2nd, because it waits 1 second
+
+        // This is the core mental shift coming from synchronous languages: code doesn't always run top-to-bottom in real time, some things get scheduled for later.
+
+    // Callbacks : the original way to handle async
+        function fetchData(callback) {
+            setTimeout(() => {
+                callback("Data received");
+            }, 1000);
+        }
+
+        fetchData((result) => {
+            console.log(result);   // "Data received" (after 1 second)
+        });
+
+        // Callback hell: the problem with chaining many async steps using callbacks
+        // Having too many nested callbacks, making asynchronous JavaScript code difficult to read, understand, and maintain.
+        // This is exactly why Promises were introduced.
+
+    // Promises:
+        // A Promise represents a value that will be available later, either it succeeds (resolve) or fails (reject)
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const success = true;
+                if (success) {
+                    resolve("Data received");
+                } else {
+                    reject("Error occurred");
+                }
+            }, 1000);
+        });
+
+        promise
+        .then((result) => console.log(result))    // runs if resolved
+        .catch((error) => console.log(error));     // runs if rejected
+
+        // Chaining promises (fixes callback hell):
+        getUser(id)
+            .then(user => getPosts(user.id))
+            .then(posts => getComments(posts[0].id))
+            .then(comments => console.log(comments))
+            .catch(error => console.log("Something failed:", error));
+        // Much flatter and more readable than nested callbacks.
+
+    // async / await (the modern, preferred way)
+        // Makes async code look synchronous, even though it isn't
+        // Compare this to the .then() chain above: same logic, much cleaner to read.
+        async function getData() {
+            const user = await getUser(id);
+            const posts = await getPosts(user.id);
+            const comments = await getComments(posts[0].id);
+            console.log(comments);
+        }
+        // await can only be used inside an async function
+        // await pauses execution of that function until the Promise resolves, without blocking the rest of the program
+        // An async function always returns a Promise, even if you return a plain value
+        async function getNumber() {
+            return 5;
+        }
+        getNumber().then(num => console.log(num));   // 5
+        console.log(getNumber());    // Promise {<pending>} — NOT 5 directly!
+
+    // Error handling with try/catch
+        async function getData() {
+        try {
+            const user = await getUser(id);
+            const posts = await getPosts(user.id);
+            console.log(posts);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+        }
+        // This replaces .catch() when using async/await, wrap your await calls in try/catch to handle failures.
+
+    // Promise.all: run multiple async tasks in parallel
+        // If tasks don't depend on each other, running them one-by-one with await wastes time
+
+        // Slow — each waits for the previous to finish
+        const user51 = await getUser(id);      // 1 second
+        const posts = await getAllPosts();     // 1 second
+        // Total: ~2 seconds
+
+        // Fast — runs both at the same time
+        const [user52, posts2] = await Promise.all([
+            getUser(id),
+            getAllPosts()
+        ]);
+        // Total: ~1 second (whichever takes longer)
+
+    // setTimeout / setInterval
+        setTimeout(() => {
+            console.log("Runs once, after 2 seconds");
+        }, 2000);
+
+        const id = setInterval(() => {
+            console.log("Runs every 1 second");
+        }, 1000);
+
+        clearInterval(id);   // stops it
+
+    // Real example fetching data from an API
+        async function getUser() {
+            try {
+                const res = await fetch("https://api.example.com/user");
+                const data = await res.json();
+                console.log(data);
+            } catch (error) {
+                console.log("Failed to fetch:", error);
+            }
+        }
+
+        // What prints first, code before setTimeout, or code after it (if the timeout is 0ms)?
+        // Rewrite this using async/await instead of .then()
+            function getData() {
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => console.log(data))
+                    .catch(err => console.log(err));
+            }
