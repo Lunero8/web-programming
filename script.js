@@ -378,6 +378,11 @@
         // slice → doesn't change original, just returns a piece
         // splice → changes the original array directly (can remove/add/replace elements)
 
+        const arr60 = [1, 2, 3];  // Recommended
+        let arr58 = [1, 2, 3];    // Use if you will reassign the array
+        var arr59 = [1, 2, 3];    // Old style, avoid
+        const fruits = ["Apple", "Banana", "Mango"];
+
 
     
 /*
