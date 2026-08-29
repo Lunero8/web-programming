@@ -114,6 +114,24 @@
         2 ** 10;                                // 1024 (exponent operator, same thing)
         Array(5).fill(0);                       // [0,0,0,0,0] create pre-filled array
         Array.from({length: 5}, (_, i) => i);   // [0,1,2,3,4] generate a range
+
+    Others:
+        Math:
+            Math.random();    → Generate random number, generate 16 decimal places number ex. 0.1234567890123456. any number from 0 to 0.9999999999999999
+            Math.abs(x)       → Absolute value
+            Math.ceil(x)      → Round up
+            Math.floor(x)     → Round down
+            Math.round(x)     → Round to nearest integer
+            Math.trunc(x)     → Remove decimal part
+
+            Math.max(a, b, ...) → Largest value
+            Math.min(a, b, ...) → Smallest value
+
+            Math.pow(x, y)    → x to the power y
+            Math.sqrt(x)      → Square root
+            Math.cbrt(x)      → Cube root
+
+            And lots more...
 */
 
 
